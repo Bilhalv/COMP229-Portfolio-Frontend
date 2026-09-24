@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getFakePerson from "../services/randomUser";
+import getFakePerson from "/services/randomUser";
 
 export default function AboutMe() {
   const [person, setPerson] = useState(null);

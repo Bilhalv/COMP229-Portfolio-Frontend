@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Chip from "../components/Chip.jsx"
+import Chip from "/components/Chip.jsx";
 
 const skills = ["Web Development", "UI / UX", "JavaScript", "React"];
 
@@ -18,10 +18,8 @@ export default function Home() {
         problems and make digital spaces simpler for everyone.
       </blockquote>
       <ul className="flex flex-wrap justify-center gap-3">
-        {skills.map((skill, i) => (
-          <Chip filled={false}>
-            {skill}
-          </Chip>
+        {skills.map((skill) => (
+          <Chip filled={false}>{skill}</Chip>
         ))}
       </ul>
       <div className="flex gap-4">

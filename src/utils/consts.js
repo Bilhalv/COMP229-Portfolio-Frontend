@@ -1,4 +1,11 @@
-import { ContactRound, FileUser, HardHat, Home, MessageSquareQuote, SquareKanban } from "lucide-react";
+import {
+  ContactRound,
+  FileUser,
+  HardHat,
+  Home,
+  MessageSquareQuote,
+  SquareKanban,
+} from "lucide-react";
 
 export const NavBarItems = [
   { label: "Home", path: "/", icon: Home },

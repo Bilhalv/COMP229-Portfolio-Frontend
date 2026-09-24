@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { NavBarItems } from "../utils/consts";
+import { NavBarItems } from "../src/utils/consts";
 
 export default function Navbar() {
   return (
