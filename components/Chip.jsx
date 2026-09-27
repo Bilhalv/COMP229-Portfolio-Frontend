@@ -3,7 +3,7 @@ export default function Chip({ filled = true, key, children }) {
   const filledClass = "bg-accent";
 
   return (
-    <li
+    <span
       key={key}
       className={
         "border border-accent px-4 py-1.5 text-sm " +
@@ -12,6 +12,6 @@ export default function Chip({ filled = true, key, children }) {
       }
     >
       {children}
-    </li>
+    </span>
   );
 }
