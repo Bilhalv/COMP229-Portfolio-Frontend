@@ -19,7 +19,9 @@ export default function Home() {
       </blockquote>
       <ul className="flex flex-wrap justify-center gap-3">
         {skills.map((skill) => (
-          <Chip filled={false}>{skill}</Chip>
+          <Chip key={skill} filled={false}>
+            {skill}
+          </Chip>
         ))}
       </ul>
       <div className="flex gap-4">

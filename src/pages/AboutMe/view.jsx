@@ -19,8 +19,12 @@ export default function AboutView() {
             Available for collaborations
           </p>
         </div>
-        {/* TODO add a proper bio */}
-        <p className="max-w-md text-text-secondary">Software Engineering Technician student</p>
+        <p className="max-w-md text-text-secondary">
+          Frontend Developer and Computer Programming student at Centennial
+          College, specializing in React and Next.js. I love turning Figma
+          designs into clean, accessible, and reusable components - writing
+          maintainable, tested code that ships features users actually enjoy.
+        </p>
         <a
           href={"/resume.pdf"}
           target="_blank"
