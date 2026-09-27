@@ -20,10 +20,10 @@ export default function AboutView() {
           </p>
         </div>
         <p className="max-w-md text-text-secondary">
-          Frontend Developer and Computer Programming student at Centennial
+          Frontend Developer and Software Engineering student at Centennial
           College, specializing in React and Next.js. I love turning Figma
-          designs into clean, accessible, and reusable components - writing
-          maintainable, tested code that ships features users actually enjoy.
+          designs into clean, accessible, and reusable components by writing
+          maintainable, tested code that ships features that users actually enjoy.
         </p>
         <a
           href={"/resume.pdf"}
