@@ -1,3 +1,4 @@
+import PageHeader from "/components/PageHeader";
 import ProjectItem from "./components/ProjectItem";
 import useProjectsController from "./controller";
 
@@ -5,8 +6,11 @@ export default function ProjectsView() {
   const projects = useProjectsController();
 
   return (
-    <div className="flex w-full flex-col items-center gap-10 px-6 py-16">
-      <h1 className="text-4xl font-bold text-text-primary">Projects</h1>
+    <div className="flex w-full flex-col items-center gap-8 px-6 py-16">
+      <PageHeader
+        title="Projects"
+        subtitle="A selection of projects I have built or contributed to."
+      />
       {projects ? (
         <>
           <div className="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">

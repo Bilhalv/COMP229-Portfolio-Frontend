@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { LoaderCircle, Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const initialForm = {
@@ -17,6 +17,7 @@ const labelClasses = "text-sm font-medium text-text-secondary";
 
 export default function MessageForm() {
   const [form, setForm] = useState(initialForm);
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
   function handleChange(event) {
@@ -24,9 +25,12 @@ export default function MessageForm() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    setSubmitting(true);
     console.log("Message submitted:", form);
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    setSubmitting(false);
     navigate("/");
   }
 
@@ -40,13 +44,14 @@ export default function MessageForm() {
           Send me a message
         </h2>
         <p className="text-sm text-text-muted">
-          Fill in the form and you will be taken back to the home page.
+          Fields marked with * are required. Submitting will take you back to
+          the home page.
         </p>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1">
           <label htmlFor="firstName" className={labelClasses}>
-            First Name
+            First Name <span className="text-error">*</span>
           </label>
           <input
             id="firstName"
@@ -60,7 +65,7 @@ export default function MessageForm() {
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="lastName" className={labelClasses}>
-            Last Name
+            Last Name <span className="text-error">*</span>
           </label>
           <input
             id="lastName"
@@ -75,7 +80,8 @@ export default function MessageForm() {
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor="phone" className={labelClasses}>
-          Contact Number
+          Contact Number{" "}
+          <span className="font-normal text-text-muted">(optional)</span>
         </label>
         <input
           id="phone"
@@ -89,7 +95,7 @@ export default function MessageForm() {
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor="email" className={labelClasses}>
-          Email Address
+          Email Address <span className="text-error">*</span>
         </label>
         <input
           id="email"
@@ -104,7 +110,7 @@ export default function MessageForm() {
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor="message" className={labelClasses}>
-          Message
+          Message <span className="text-error">*</span>
         </label>
         <textarea
           id="message"
@@ -119,10 +125,20 @@ export default function MessageForm() {
       </div>
       <button
         type="submit"
-        className="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 font-semibold text-text-primary transition-colors hover:bg-accent-hover"
+        disabled={submitting}
+        className="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 font-semibold text-background transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
       >
-        <Send className="size-4" />
-        Send Message
+        {submitting ? (
+          <>
+            <LoaderCircle className="size-4 animate-spin" />
+            Sending...
+          </>
+        ) : (
+          <>
+            <Send className="size-4" />
+            Send Message
+          </>
+        )}
       </button>
     </form>
   );

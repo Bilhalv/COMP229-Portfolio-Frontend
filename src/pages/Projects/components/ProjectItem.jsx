@@ -9,6 +9,8 @@ export default function ProjectItem({ data }) {
           className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
           src={data.image}
           alt={data.name}
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">

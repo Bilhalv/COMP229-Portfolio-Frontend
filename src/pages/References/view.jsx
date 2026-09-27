@@ -1,12 +1,16 @@
 import TestimonialCard from "./components/TestimonialCard";
 import useReferencesController from "./controller";
+import PageHeader from "/components/PageHeader";
 
 export default function ReferencesView() {
   const references = useReferencesController();
 
   return (
     <div className="flex w-full flex-col items-center gap-8 px-6 py-16">
-      <h1 className="text-4xl font-bold text-text-primary">References</h1>
+      <PageHeader
+        title="References"
+        subtitle="A few words from people I have worked with."
+      />
       {references ? (
         <div className="grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
           {references.map((reference) => (

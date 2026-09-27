@@ -13,7 +13,7 @@ export default function Home() {
         take a look at what I have been working on.
       </p>
       <blockquote>
-        <span>My mission: </span>
+        <span className="font-semibold text-accent-soft">My mission: </span>
         to design accessible, high-quality web experiences that solve real
         problems and make digital spaces simpler for everyone.
       </blockquote>
@@ -27,7 +27,7 @@ export default function Home() {
       <div className="flex gap-4">
         <Link
           to="/projects"
-          className="rounded-md bg-accent px-6 py-2.5 font-semibold text-text-primary transition-colors hover:bg-accent-hover"
+          className="rounded-md bg-accent px-6 py-2.5 font-semibold text-background transition-colors hover:bg-accent-hover"
         >
           View Projects
         </Link>
