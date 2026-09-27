@@ -116,3 +116,11 @@ Most updates are content-only and live in `services/*.js`:
 
 Theme colors and focus-ring styling are set in `src/index.css` under `@theme`.
 Routes are defined in `src/router/index.jsx`.
+
+## Credits
+
+The kawaii tech logos on the Home and About pages, the "I am a Programmer"
+hero badge, and the 404 artwork are by
+[SAWARATSUKI (KawaiiLogos)](https://github.com/SAWARATSUKI/KawaiiLogos) and are
+used under its custom license (free for personal/non-commercial use; not to be
+used for AI/ML purposes).

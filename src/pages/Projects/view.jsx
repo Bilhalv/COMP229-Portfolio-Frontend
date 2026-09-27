@@ -21,7 +21,7 @@ export default function ProjectsView() {
               <ProjectItem key={project.name} project={project} />
             ))}
           </div>
-          <div className="flex w-full max-w-6xl flex-col items-center gap-2 rounded-3xl border border-accent/20 bg-surface/50 px-6 py-10 text-center">
+          <div className="flex w-full max-w-6xl flex-col items-center gap-2 rounded-3xl border-4 border-dashed border-accent/20 bg-surface/50 px-6 py-10 text-center">
             <p className="font-semibold text-text-primary">
               More projects coming soon
             </p>

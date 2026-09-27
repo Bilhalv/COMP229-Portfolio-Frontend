@@ -24,6 +24,17 @@ export default function Footer() {
       <p className="text-xs text-text-muted">
         © {new Date().getFullYear()} Pedro Bilhalva Oliveira
       </p>
+      <p className="text-xs text-text-muted">
+        Site logos by{" "}
+        <a
+          href="https://github.com/SAWARATSUKI/KawaiiLogos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent-soft transition-colors hover:text-accent"
+        >
+          SAWARATSUKI (KawaiiLogos)
+        </a>
+      </p>
     </footer>
   );
 }

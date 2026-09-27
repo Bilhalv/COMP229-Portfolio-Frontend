@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LoaderCircle, Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Button from "/components/Button.jsx";
 
 const initialForm = {
   firstName: "",
@@ -129,10 +130,10 @@ export default function MessageForm() {
           placeholder="Tell me about your project..."
         />
       </div>
-      <button
+      <Button
         type="submit"
         disabled={submitting}
-        className="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 font-semibold text-background transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-auto"
       >
         {submitting ? (
           <>
@@ -145,7 +146,7 @@ export default function MessageForm() {
             Send Message
           </>
         )}
-      </button>
+      </Button>
     </form>
   );
 }
