@@ -6,7 +6,7 @@ import Home from "/src/pages/Home";
 import NotFound from "/src/pages/NotFound";
 import Projects from "/src/pages/Projects/view";
 import References from "/src/pages/References/view";
-import Services from "/src/pages/Services";
+import Services from "/src/pages/Services/view";
 
 const router = createBrowserRouter([
   {
