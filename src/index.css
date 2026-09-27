@@ -22,6 +22,7 @@
 }
 
 @layer base {
+  /* Consistent visible focus ring for keyboard navigation. */
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,

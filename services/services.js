@@ -1,5 +1,6 @@
 import { Globe, Palette, Server, Smartphone } from "lucide-react";
 
+// List of services shown on the Services page. Each entry carries a lucide icon plus the tags rendered as chips.
 export async function getServices() {
   return [
     {

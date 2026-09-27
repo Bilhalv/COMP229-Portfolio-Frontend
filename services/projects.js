@@ -1,3 +1,4 @@
+// Featured projects shown on the Projects page
 export async function getProjects() {
   return [
     {

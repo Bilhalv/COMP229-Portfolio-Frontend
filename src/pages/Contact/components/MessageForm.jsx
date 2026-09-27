@@ -25,13 +25,19 @@ export default function MessageForm() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
+  // Mock submission - there is no backend yet, so the message is just captured (and logged) before redirecting back to the home page.
   async function handleSubmit(event) {
     event.preventDefault();
     setSubmitting(true);
-    console.log("Message submitted:", form);
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setSubmitting(false);
-    navigate("/");
+    try {
+      console.log("Message submitted:", form);
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      navigate("/");
+    } catch (err) {
+      console.error("Failed to submit the message:", err);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (

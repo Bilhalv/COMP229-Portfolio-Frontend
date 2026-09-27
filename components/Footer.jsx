@@ -22,7 +22,7 @@ export default function Footer() {
         })}
       </div>
       <p className="text-xs text-text-muted">
-        © 2026 Pedro Bilhalva Oliveira
+        © {new Date().getFullYear()} Pedro Bilhalva Oliveira
       </p>
     </footer>
   );

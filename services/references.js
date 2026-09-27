@@ -1,9 +1,10 @@
+// Testimonials shown on the References page
 export async function getReferences() {
   return [
     {
       name: "Ana Vargas",
-      company: "Centennial College",
-      position: "Web Design Instructor",
+      company: "Personal Life",
+      position: "Girlfriend",
       testimonial:
         "Pedro consistently delivered thoughtful, well-structured projects and always went the extra mile to polish the user experience.",
     },

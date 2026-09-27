@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Quote } from "lucide-react";
 
+// Long testimonials are clamped to 5 lines and expanded only via the toggle, keeping the card grid tidy while the full text stays reachable.
 const EXPAND_THRESHOLD = 180;
 
 export default function TestimonialCard({ reference }) {

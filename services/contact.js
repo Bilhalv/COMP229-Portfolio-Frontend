@@ -1,5 +1,6 @@
 import { Briefcase, CodeXml, Mail } from "lucide-react";
 
+// Contact details for the Contact page panel. contactSocials is also reused by the shared Footer so links stay in sync
 export const contactEmail = "pedrobilhalvaoliveira@gmail.com";
 
 export const contactSocials = [
