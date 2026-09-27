@@ -22,7 +22,8 @@ export default function AboutView() {
         {/* TODO add a proper bio */}
         <p className="max-w-md text-text-secondary">Software Engineering Technician student</p>
         <a
-          href={"./"}
+          href={"/resume.pdf"}
+          target="_blank"
           className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-2.5 font-semibold text-text-primary transition-colors hover:bg-accent-hover"
         >
           <Download className="size-4" />
