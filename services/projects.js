@@ -1,3 +1,24 @@
+/*
+projects {
+  title: string -> name
+  completion: Date -> completionDate
+  description: string
+  image: string
+  // mayb optional
+  role: string
+  stack: string[]
+  repoUrl: string
+  hasEnglishDescription: boolean
+}
+
+  Required functions:
+    GET     api/projects      = get all projects
+    GET     api/projects/:id  = get project by id
+    POST    api/projects      = add new project
+    PUT     api/projects/:id  = update project by id
+    DELETE  api/projects/:id  = remove project by id
+*/
+
 // Featured projects shown on the Projects page
 export async function getProjects() {
   return [
@@ -17,7 +38,7 @@ export async function getProjects() {
       role: "Frontend",
       completionDate: "Jan 2024",
       stack: ["React", "Chakra UI", "TypeScript", "Vercel Postgres"],
-      image: "/projects/t20-sheet.jpg",
+      image: "/projects/t20-sheet.png",
       repoUrl: "https://github.com/Bilhalv/T20-Sheet",
       hasEnglishDescription: true,
       description:

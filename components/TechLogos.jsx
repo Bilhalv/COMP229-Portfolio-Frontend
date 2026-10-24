@@ -14,8 +14,6 @@ export default function TechLogos({ logos = STACK_LOGOS, size = "h-20" }) {
             src={logo.src}
             alt={logo.name}
             className={`${size}`}
-            loading="lazy"
-            decoding="async"
           />
         </li>
       ))}

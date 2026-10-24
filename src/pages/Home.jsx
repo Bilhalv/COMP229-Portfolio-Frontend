@@ -7,8 +7,6 @@ export default function Home() {
         src="/kawaii/iam-programmer.png"
         alt="I am a Programmer"
         className="w-56 scale-120 rounded-2xl transition-transform duration-300 hover:scale-140"
-        loading="lazy"
-        decoding="async"
       />
       <p className="max-w-xl text-lg text-text-secondary">
         A Software engineering student at Centennial College passionate about

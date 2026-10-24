@@ -59,28 +59,3 @@ blockquote {
   flex-direction: column;
   box-sizing: border-box;
 }
-
-::view-transition-old(root) {
-  animation: 160ms ease both vtr-out;
-}
-::view-transition-new(root) {
-  animation: 320ms ease 40ms both vtr-in;
-}
-@keyframes vtr-out {
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-@keyframes vtr-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
-  }
-}

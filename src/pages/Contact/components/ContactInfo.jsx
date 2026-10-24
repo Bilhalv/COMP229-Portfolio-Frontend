@@ -1,4 +1,10 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Briefcase, CodeXml, Mail, MapPin, Phone } from "lucide-react";
+
+const SOCIAL_ICONS = {
+  GitHub: CodeXml,
+  LinkedIn: Briefcase,
+  Email: Mail,
+};
 
 export default function ContactInfo({ info }) {
   return (
@@ -37,12 +43,12 @@ export default function ContactInfo({ info }) {
       </ul>
       <div className="mt-auto flex flex-col gap-2">
         {info.socials.map((social) => {
-          const Icon = social.icon;
+          const Icon = SOCIAL_ICONS[social.label];
           return (
             <a
               key={social.label}
               href={social.url}
-              target={social.url.startsWith("mailto") ? undefined : "_blank"}
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-md border border-border px-4 py-2.5 font-semibold text-text-primary transition-colors hover:border-accent hover:bg-surface-hover"
             >

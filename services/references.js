@@ -1,3 +1,19 @@
+/*
+references {
+  name: string
+  testimonial: string
+  position: string
+  company: string
+}
+
+  Required Routes
+    GET     api/references      
+    GET     api/references/:id  
+    POST    api/references      
+    PUT     api/references/:id  
+    DELETE  api/references/:id  
+*/
+
 // Testimonials shown on the References page
 export async function getReferences() {
   return [

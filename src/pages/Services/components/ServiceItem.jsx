@@ -1,7 +1,15 @@
+import { Globe, Palette, Server, Smartphone } from "lucide-react";
 import Chip from "/components/Chip.jsx";
 
+const SERVICE_ICONS = {
+  "Web Development": Globe,
+  "Mobile Development": Smartphone,
+  "UI/UX Implementation": Palette,
+  "API Integration & General Programming": Server,
+};
+
 export default function ServiceItem({ service }) {
-  const Icon = service.icon;
+  const Icon = SERVICE_ICONS[service.title];
 
   return (
     <article className="group flex h-full flex-col gap-4 rounded-3xl border border-border bg-surface p-6 transition-all duration-300 hover:border-accent hover:bg-surface-hover hover:shadow-lg hover:shadow-accent/10">
