@@ -21,28 +21,34 @@ function delay(value) {
   return new Promise((resolve) => setTimeout(() => resolve(value), 150));
 }
 
+function response(data, message = "Success") {
+  return { success: true, message, data };
+}
+
 export async function getAdminProjects() {
-  return delay([...projects]);
+  return delay(response([...projects], "Projects list retrieved successfully."));
 }
 
 export async function getAdminProjectById(id) {
-  return delay(projects.find((project) => project.id === id) || null);
+  const project = projects.find((item) => item.id === id) || null;
+  return delay(response(project, "Project retrieved successfully."));
 }
 
 export async function createAdminProject(data) {
   const project = { ...data, id: crypto.randomUUID() };
   projects = [project, ...projects];
-  return delay(project);
+  return delay(response(project, "Project added successfully."));
 }
 
 export async function updateAdminProject(id, data) {
   projects = projects.map((project) =>
     project.id === id ? { ...project, ...data, id } : project,
   );
-  return delay(projects.find((project) => project.id === id) || null);
+  const project = projects.find((item) => item.id === id) || null;
+  return delay(response(project, "Project updated successfully."));
 }
 
 export async function deleteAdminProject(id) {
   projects = projects.filter((project) => project.id !== id);
-  return delay(true);
+  return delay({ success: true, message: "Project deleted successfully." });
 }

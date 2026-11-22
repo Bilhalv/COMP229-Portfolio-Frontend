@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { deleteAdminService, getAdminServices } from "/services/admin/services";
+import { unwrapResponse } from "/src/utils/response";
 
 export default function useAdminServicesController() {
   const [services, setServices] = useState(undefined);
@@ -8,7 +9,8 @@ export default function useAdminServicesController() {
   const loadServices = useCallback(async () => {
     try {
       setError(null);
-      setServices(await getAdminServices());
+      const res = unwrapResponse(await getAdminServices(), "Could not load services.");
+      setServices(res.data || []);
     } catch (err) {
       setError(err);
     }
@@ -19,7 +21,10 @@ export default function useAdminServicesController() {
   async function handleDelete(service) {
     if (!window.confirm(`Delete service ${service.title}?`)) return;
     try {
-      await deleteAdminService(service.id);
+      unwrapResponse(
+        await deleteAdminService(service.id),
+        "Could not delete the selected service.",
+      );
       await loadServices();
     } catch (err) {
       setError(err);

@@ -21,28 +21,34 @@ function delay(value) {
   return new Promise((resolve) => setTimeout(() => resolve(value), 150));
 }
 
+function response(data, message = "Success") {
+  return { success: true, message, data };
+}
+
 export async function getAdminReferences() {
-  return delay([...references]);
+  return delay(response([...references], "References list retrieved successfully."));
 }
 
 export async function getAdminReferenceById(id) {
-  return delay(references.find((reference) => reference.id === id) || null);
+  const reference = references.find((item) => item.id === id) || null;
+  return delay(response(reference, "Reference retrieved successfully."));
 }
 
 export async function createAdminReference(data) {
   const reference = { ...data, id: crypto.randomUUID() };
   references = [reference, ...references];
-  return delay(reference);
+  return delay(response(reference, "Reference added successfully."));
 }
 
 export async function updateAdminReference(id, data) {
   references = references.map((reference) =>
     reference.id === id ? { ...reference, ...data, id } : reference,
   );
-  return delay(references.find((reference) => reference.id === id) || null);
+  const reference = references.find((item) => item.id === id) || null;
+  return delay(response(reference, "Reference updated successfully."));
 }
 
 export async function deleteAdminReference(id) {
   references = references.filter((reference) => reference.id !== id);
-  return delay(true);
+  return delay({ success: true, message: "Reference deleted successfully." });
 }

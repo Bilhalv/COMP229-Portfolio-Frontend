@@ -17,28 +17,34 @@ function delay(value) {
   return new Promise((resolve) => setTimeout(() => resolve(value), 150));
 }
 
+function response(data, message = "Success") {
+  return { success: true, message, data };
+}
+
 export async function getAdminServices() {
-  return delay([...services]);
+  return delay(response([...services], "Services list retrieved successfully."));
 }
 
 export async function getAdminServiceById(id) {
-  return delay(services.find((service) => service.id === id) || null);
+  const service = services.find((item) => item.id === id) || null;
+  return delay(response(service, "Service retrieved successfully."));
 }
 
 export async function createAdminService(data) {
   const service = { ...data, id: crypto.randomUUID() };
   services = [service, ...services];
-  return delay(service);
+  return delay(response(service, "Service added successfully."));
 }
 
 export async function updateAdminService(id, data) {
   services = services.map((service) =>
     service.id === id ? { ...service, ...data, id } : service,
   );
-  return delay(services.find((service) => service.id === id) || null);
+  const service = services.find((item) => item.id === id) || null;
+  return delay(response(service, "Service updated successfully."));
 }
 
 export async function deleteAdminService(id) {
   services = services.filter((service) => service.id !== id);
-  return delay(true);
+  return delay({ success: true, message: "Service deleted successfully." });
 }

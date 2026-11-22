@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { deleteAdminUser, getAdminUsers } from "/services/admin/users";
+import { unwrapResponse } from "/src/utils/response";
 
 export default function useAdminUsersController() {
   const [users, setUsers] = useState(undefined);
@@ -8,8 +9,8 @@ export default function useAdminUsersController() {
   const loadUsers = useCallback(async () => {
     try {
       setError(null);
-      const data = await getAdminUsers();
-      setUsers(data);
+      const res = unwrapResponse(await getAdminUsers(), "Could not load users.");
+      setUsers(res.data || []);
     } catch (err) {
       setError(err);
     }
@@ -26,7 +27,10 @@ export default function useAdminUsersController() {
     if (!confirmed) return;
 
     try {
-      await deleteAdminUser(user.id);
+      unwrapResponse(
+        await deleteAdminUser(user.id),
+        "Could not delete the selected user.",
+      );
       await loadUsers();
     } catch (err) {
       setError(err);

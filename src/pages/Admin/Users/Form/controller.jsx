@@ -6,6 +6,7 @@ import {
   getAdminUserById,
   updateAdminUser,
 } from "/services/admin/users";
+import { unwrapResponse } from "/src/utils/response";
 
 const emptyForm = {
   firstname: "",
@@ -33,7 +34,8 @@ export default function useAdminUserFormController() {
     if (!isEdit) return;
 
     getAdminUserById(id)
-      .then((user) => {
+      .then((res) => {
+        const user = unwrapResponse(res, "Could not load the selected user.").data;
         if (!user) {
           setError(new Error("User not found."));
           return;
@@ -53,9 +55,9 @@ export default function useAdminUserFormController() {
     setError(null);
     try {
       if (isEdit) {
-        await updateAdminUser(id, data);
+        unwrapResponse(await updateAdminUser(id, data), "Could not update the user.");
       } else {
-        await createAdminUser(data);
+        unwrapResponse(await createAdminUser(data), "Could not create the user.");
       }
       navigate("/admin/users");
     } catch (err) {

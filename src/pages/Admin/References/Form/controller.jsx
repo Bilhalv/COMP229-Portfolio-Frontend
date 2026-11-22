@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { createAdminReference, getAdminReferenceById, updateAdminReference } from "/services/admin/references";
+import { unwrapResponse } from "/src/utils/response";
 
 const emptyForm = { name: "", testimonial: "", position: "", company: "" };
 
@@ -16,7 +17,8 @@ export default function useAdminReferenceFormController() {
   useEffect(() => {
     if (!isEdit) return;
     getAdminReferenceById(id)
-      .then((reference) => {
+      .then((res) => {
+        const reference = unwrapResponse(res, "Could not load the selected reference.").data;
         if (!reference) { setError(new Error("Reference not found.")); return; }
         reset({
           name: reference.name || "",
@@ -32,8 +34,8 @@ export default function useAdminReferenceFormController() {
   async function onSubmit(data) {
     setError(null);
     try {
-      if (isEdit) await updateAdminReference(id, data);
-      else await createAdminReference(data);
+      if (isEdit) unwrapResponse(await updateAdminReference(id, data), "Could not update the reference.");
+      else unwrapResponse(await createAdminReference(data), "Could not create the reference.");
       navigate("/admin/references");
     } catch (err) {
       setError(err);

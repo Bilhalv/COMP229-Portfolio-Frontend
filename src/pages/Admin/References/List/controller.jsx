@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { deleteAdminReference, getAdminReferences } from "/services/admin/references";
+import { unwrapResponse } from "/src/utils/response";
 
 export default function useAdminReferencesController() {
   const [references, setReferences] = useState(undefined);
@@ -8,7 +9,8 @@ export default function useAdminReferencesController() {
   const loadReferences = useCallback(async () => {
     try {
       setError(null);
-      setReferences(await getAdminReferences());
+      const res = unwrapResponse(await getAdminReferences(), "Could not load references.");
+      setReferences(res.data || []);
     } catch (err) {
       setError(err);
     }
@@ -19,7 +21,10 @@ export default function useAdminReferencesController() {
   async function handleDelete(reference) {
     if (!window.confirm(`Delete reference ${reference.name}?`)) return;
     try {
-      await deleteAdminReference(reference.id);
+      unwrapResponse(
+        await deleteAdminReference(reference.id),
+        "Could not delete the selected reference.",
+      );
       await loadReferences();
     } catch (err) {
       setError(err);

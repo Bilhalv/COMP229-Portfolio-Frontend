@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { deleteAdminProject, getAdminProjects } from "/services/admin/projects";
+import { unwrapResponse } from "/src/utils/response";
 
 export default function useAdminProjectsController() {
   const [projects, setProjects] = useState(undefined);
@@ -8,8 +9,8 @@ export default function useAdminProjectsController() {
   const loadProjects = useCallback(async () => {
     try {
       setError(null);
-      const data = await getAdminProjects();
-      setProjects(data);
+      const res = unwrapResponse(await getAdminProjects(), "Could not load projects.");
+      setProjects(res.data || []);
     } catch (err) {
       setError(err);
     }
@@ -23,7 +24,10 @@ export default function useAdminProjectsController() {
     const confirmed = window.confirm(`Delete project ${project.title}?`);
     if (!confirmed) return;
     try {
-      await deleteAdminProject(project.id);
+      unwrapResponse(
+        await deleteAdminProject(project.id),
+        "Could not delete the selected project.",
+      );
       await loadProjects();
     } catch (err) {
       setError(err);

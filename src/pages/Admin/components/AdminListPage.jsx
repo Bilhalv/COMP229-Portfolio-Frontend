@@ -26,7 +26,7 @@ export default function AdminListPage({
       </div>
 
       {error ? (
-        <ErrorNotice message={`Could not load ${title.toLower()}.`} />
+        <ErrorNotice message={error.message || `Could not load ${title.toLower()}.`} />
       ) : loading ? (
         <p className="text-text-muted">Loading...</p>
       ) : rows.length === 0 ? (
