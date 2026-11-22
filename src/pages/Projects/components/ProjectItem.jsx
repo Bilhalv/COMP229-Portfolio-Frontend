@@ -15,7 +15,13 @@ export default function ProjectItem({ project }) {
             {project.name}
           </h2>
           <span className="shrink-0 rounded-full border border-border px-2.5 py-0.5 text-xs text-accent-soft">
-            {project.completionDate}
+            {project.completionDate
+              ? new Date(project.completionDate).toLocaleDateString("en-US", {
+                  month: "short",
+                  year: "numeric",
+                  timeZone: "UTC",
+                })
+              : "-"}
           </span>
         </div>
         <p className="text-sm leading-relaxed text-text-secondary">
