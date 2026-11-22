@@ -2,6 +2,7 @@ import ServiceItem from "./components/ServiceItem";
 import useServicesController from "./controller";
 import PageHeader from "/components/PageHeader";
 import ErrorNotice from "/components/ErrorNotice";
+import { ServiceCardSkeleton } from "/src/components/Skeleton.jsx";
 
 export default function ServicesView() {
   const { services, error } = useServicesController();
@@ -21,7 +22,11 @@ export default function ServicesView() {
           ))}
         </div>
       ) : (
-        <p className="text-text-muted">Loading services...</p>
+        <div className="grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <ServiceCardSkeleton key={i} />
+          ))}
+        </div>
       )}
     </div>
   );

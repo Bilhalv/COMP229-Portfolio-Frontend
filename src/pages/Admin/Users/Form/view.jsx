@@ -2,6 +2,7 @@ import { LoaderCircle, Save } from "lucide-react";
 import PageHeader from "/components/PageHeader";
 import Button from "/components/Button.jsx";
 import ErrorNotice from "/components/ErrorNotice";
+import { FormSkeleton } from "/src/components/Skeleton.jsx";
 import useAdminUserFormController from "./controller";
 
 const inputClasses =
@@ -22,7 +23,7 @@ export default function AdminUserFormView() {
       {error && !loading ? <ErrorNotice message={error.message || "Could not save the user."} /> : null}
 
       {loading ? (
-        <p className="text-text-muted">Loading...</p>
+        <FormSkeleton fields={4} />
       ) : (
         <form
           onSubmit={handleSubmit(onSubmit)}

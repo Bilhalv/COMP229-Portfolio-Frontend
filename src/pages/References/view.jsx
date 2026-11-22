@@ -2,6 +2,7 @@ import TestimonialCard from "./components/TestimonialCard";
 import useReferencesController from "./controller";
 import PageHeader from "/components/PageHeader";
 import ErrorNotice from "/components/ErrorNotice";
+import { ReferenceCardSkeleton } from "/src/components/Skeleton.jsx";
 
 export default function ReferencesView() {
   const { references, error } = useReferencesController();
@@ -21,7 +22,11 @@ export default function ReferencesView() {
           ))}
         </div>
       ) : (
-        <p className="text-text-muted">Loading references...</p>
+        <div className="grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <ReferenceCardSkeleton key={i} />
+          ))}
+        </div>
       )}
     </div>
   );

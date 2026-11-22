@@ -2,6 +2,7 @@ import PageHeader from "/components/PageHeader";
 import ProjectItem from "./components/ProjectItem";
 import useProjectsController from "./controller";
 import ErrorNotice from "/components/ErrorNotice";
+import { ProjectCardSkeleton } from "/src/components/Skeleton.jsx";
 
 export default function ProjectsView() {
   const { projects, error } = useProjectsController();
@@ -32,7 +33,11 @@ export default function ProjectsView() {
           </div>
         </>
       ) : (
-        <p className="text-text-muted">Loading projects...</p>
+        <div className="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <ProjectCardSkeleton key={i} />
+          ))}
+        </div>
       )}
     </div>
   );

@@ -2,6 +2,7 @@ import { LoaderCircle, Save } from "lucide-react";
 import PageHeader from "/components/PageHeader";
 import Button from "/components/Button.jsx";
 import ErrorNotice from "/components/ErrorNotice";
+import { FormSkeleton } from "/src/components/Skeleton.jsx";
 import useAdminReferenceFormController from "./controller";
 
 const inputClasses =
@@ -14,7 +15,7 @@ export default function AdminReferenceFormView() {
     <div className="flex w-full flex-col items-center gap-8 px-6 py-16">
       <PageHeader title={isEdit ? "Edit Reference" : "Add Reference"} subtitle={isEdit ? "Update the selected reference." : "Create a new reference record."} />
       {error && !loading ? <ErrorNotice message={error.message || "Could not save the reference."} /> : null}
-      {loading ? <p className="text-text-muted">Loading...</p> : (
+      {loading ? <FormSkeleton fields={4} /> : (
         <form onSubmit={handleSubmit(onSubmit)} className="flex w-full max-w-2xl flex-col gap-4 rounded-3xl border border-border bg-surface p-6">
           <div className="flex flex-col gap-1">
             <label htmlFor="name" className={labelClasses}>Name <span className="text-error">*</span></label>

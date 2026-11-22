@@ -2,6 +2,7 @@ import { LoaderCircle, Save } from "lucide-react";
 import PageHeader from "/components/PageHeader";
 import Button from "/components/Button.jsx";
 import ErrorNotice from "/components/ErrorNotice";
+import { FormSkeleton } from "/src/components/Skeleton.jsx";
 import useAdminServiceFormController from "./controller";
 
 const inputClasses =
@@ -14,7 +15,7 @@ export default function AdminServiceFormView() {
     <div className="flex w-full flex-col items-center gap-8 px-6 py-16">
       <PageHeader title={isEdit ? "Edit Service" : "Add Service"} subtitle={isEdit ? "Update the selected service." : "Create a new service record."} />
       {error && !loading ? <ErrorNotice message={error.message || "Could not save the service."} /> : null}
-      {loading ? <p className="text-text-muted">Loading...</p> : (
+      {loading ? <FormSkeleton fields={3} /> : (
         <form onSubmit={handleSubmit(onSubmit)} className="flex w-full max-w-2xl flex-col gap-4 rounded-3xl border border-border bg-surface p-6">
           <div className="flex flex-col gap-1">
             <label htmlFor="title" className={labelClasses}>Title <span className="text-error">*</span></label>

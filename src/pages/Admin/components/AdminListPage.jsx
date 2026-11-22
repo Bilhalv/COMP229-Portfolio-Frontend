@@ -2,6 +2,7 @@ import { Pencil, Plus, Trash2 } from "lucide-react";
 import PageHeader from "/components/PageHeader";
 import Button from "/components/Button.jsx";
 import ErrorNotice from "/components/ErrorNotice";
+import { TableSkeleton } from "/src/components/Skeleton.jsx";
 
 export default function AdminListPage({
   title,
@@ -28,7 +29,7 @@ export default function AdminListPage({
       {error ? (
         <ErrorNotice message={error.message || `Could not load ${title.toLower()}.`} />
       ) : loading ? (
-        <p className="text-text-muted">Loading...</p>
+        <TableSkeleton columns={columns.length} rows={5} />
       ) : rows.length === 0 ? (
         <div className="w-full max-w-6xl rounded-3xl border border-border bg-surface px-6 py-10 text-center text-text-muted">
           No records found.

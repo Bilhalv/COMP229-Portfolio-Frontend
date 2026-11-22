@@ -2,6 +2,7 @@ import { LoaderCircle, Save } from "lucide-react";
 import PageHeader from "/components/PageHeader";
 import Button from "/components/Button.jsx";
 import ErrorNotice from "/components/ErrorNotice";
+import { FormSkeleton } from "/src/components/Skeleton.jsx";
 import useAdminProjectFormController from "./controller";
 
 const inputClasses =
@@ -15,7 +16,7 @@ export default function AdminProjectFormView() {
     <div className="flex w-full flex-col items-center gap-8 px-6 py-16">
       <PageHeader title={isEdit ? "Edit Project" : "Add Project"} subtitle={isEdit ? "Update the selected project." : "Create a new project record."} />
       {error && !loading ? <ErrorNotice message={error.message || "Could not save the project."} /> : null}
-      {loading ? <p className="text-text-muted">Loading...</p> : (
+      {loading ? <FormSkeleton fields={7} /> : (
         <form onSubmit={handleSubmit(onSubmit)} className="flex w-full max-w-2xl flex-col gap-4 rounded-3xl border border-border bg-surface p-6">
           <div className="flex flex-col gap-1">
             <label htmlFor="name" className={labelClasses}>Name <span className="text-error">*</span></label>
