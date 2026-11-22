@@ -9,7 +9,7 @@ const inputClasses =
 const labelClasses = "text-sm font-medium text-text-secondary";
 
 export default function AdminUserFormView() {
-  const { form, isEdit, loading, submitting, error, handleChange, handleSubmit } =
+  const { register, handleSubmit, onSubmit, errors, isEdit, loading, submitting, error } =
     useAdminUserFormController();
 
   return (
@@ -25,26 +25,30 @@ export default function AdminUserFormView() {
         <p className="text-text-muted">Loading...</p>
       ) : (
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex w-full max-w-2xl flex-col gap-4 rounded-3xl border border-border bg-surface p-6"
         >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-1">
               <label htmlFor="firstname" className={labelClasses}>First Name <span className="text-error">*</span></label>
-              <input id="firstname" name="firstname" value={form.firstname} onChange={handleChange} required className={inputClasses} />
+              <input id="firstname" className={inputClasses} {...register("firstname", { required: "First name is required." })} />
+              {errors.firstname && <p className="text-xs text-error">{errors.firstname.message}</p>}
             </div>
             <div className="flex flex-col gap-1">
               <label htmlFor="lastname" className={labelClasses}>Last Name <span className="text-error">*</span></label>
-              <input id="lastname" name="lastname" value={form.lastname} onChange={handleChange} required className={inputClasses} />
+              <input id="lastname" className={inputClasses} {...register("lastname", { required: "Last name is required." })} />
+              {errors.lastname && <p className="text-xs text-error">{errors.lastname.message}</p>}
             </div>
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="email" className={labelClasses}>Email <span className="text-error">*</span></label>
-            <input id="email" name="email" type="email" value={form.email} onChange={handleChange} required className={inputClasses} />
+            <input id="email" type="email" className={inputClasses} {...register("email", { required: "Email is required." })} />
+            {errors.email && <p className="text-xs text-error">{errors.email.message}</p>}
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="password" className={labelClasses}>Password <span className="text-error">*</span></label>
-            <input id="password" name="password" type="password" value={form.password} onChange={handleChange} required className={inputClasses} />
+            <input id="password" type="password" className={inputClasses} {...register("password", { required: "Password is required." })} />
+            {errors.password && <p className="text-xs text-error">{errors.password.message}</p>}
           </div>
           <div className="flex gap-3 pt-2">
             <Button type="submit" disabled={submitting}>
