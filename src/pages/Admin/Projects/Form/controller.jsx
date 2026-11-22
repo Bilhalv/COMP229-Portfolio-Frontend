@@ -4,7 +4,40 @@ import { useNavigate, useParams } from "react-router-dom";
 import { createAdminProject, getAdminProjectById, updateAdminProject } from "/services/admin/projects";
 import { unwrapResponse } from "/src/utils/response";
 
-const emptyForm = { title: "", completion: "", description: "", image: "" };
+const emptyForm = {
+  name: "",
+  completionDate: "",
+  description: "",
+  image: "",
+  role: "",
+  stack: "",
+  repoUrl: "",
+  hasEnglishDescription: false,
+};
+
+function toFormValues(project) {
+  return {
+    name: project.name || "",
+    completionDate: project.completionDate ? String(project.completionDate).slice(0, 10) : "",
+    description: project.description || "",
+    image: project.image || "",
+    role: project.role || "",
+    stack: Array.isArray(project.stack) ? project.stack.join(", ") : "",
+    repoUrl: project.repoUrl || "",
+    hasEnglishDescription: Boolean(project.hasEnglishDescription),
+  };
+}
+
+function toProjectPayload(data) {
+  return {
+    ...data,
+    stack: data.stack
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean),
+    hasEnglishDescription: Boolean(data.hasEnglishDescription),
+  };
+}
 
 export default function useAdminProjectFormController() {
   const { id } = useParams();
@@ -20,12 +53,7 @@ export default function useAdminProjectFormController() {
       .then((res) => {
         const project = unwrapResponse(res, "Could not load the selected project.").data;
         if (!project) { setError(new Error("Project not found.")); return; }
-        reset({
-          title: project.title || "",
-          completion: project.completion ? String(project.completion).slice(0, 10) : "",
-          description: project.description || "",
-          image: project.image || "",
-        });
+        reset(toFormValues(project));
       })
       .catch(setError)
       .finally(() => setLoading(false));
@@ -34,8 +62,9 @@ export default function useAdminProjectFormController() {
   async function onSubmit(data) {
     setError(null);
     try {
-      if (isEdit) unwrapResponse(await updateAdminProject(id, data), "Could not update the project.");
-      else unwrapResponse(await createAdminProject(data), "Could not create the project.");
+      const payload = toProjectPayload(data);
+      if (isEdit) unwrapResponse(await updateAdminProject(id, payload), "Could not update the project.");
+      else unwrapResponse(await createAdminProject(payload), "Could not create the project.");
       navigate("/admin/projects");
     } catch (err) {
       setError(err);

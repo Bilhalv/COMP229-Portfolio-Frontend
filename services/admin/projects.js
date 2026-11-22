@@ -1,19 +1,28 @@
 let projects = [
   {
     id: "1",
-    title: "Minha Feira",
-    completion: "2025-11-01",
+    name: "Minha Feira",
+    role: "Frontend",
+    completionDate: "2025-11-01",
+    stack: ["React Native", "Expo", "NativeWind", "TypeScript"],
+    image: "/projects/minha-feira.png",
+    repoUrl:
+      "https://gitlab.com/senac-projetos-de-desenvolvimento/2025-debora-pedro-diego/minha-feira-frontend",
+    hasEnglishDescription: false,
     description:
       "A mobile app for discovering and managing street markets (feiras), with login, favorites, reviews, an interactive map, and paginated search.",
-    image: "/projects/minha-feira.png",
   },
   {
     id: "2",
-    title: "Tormenta 20 Sheet Builder",
-    completion: "2024-01-01",
+    name: "Tormenta 20 Sheet Builder",
+    role: "Frontend",
+    completionDate: "2024-01-01",
+    stack: ["React", "Chakra UI", "TypeScript", "Vercel Postgres"],
+    image: "/projects/t20-sheet.png",
+    repoUrl: "https://github.com/Bilhalv/T20-Sheet",
+    hasEnglishDescription: true,
     description:
       "Interactive character sheet builder for the Brazilian TTRPG Tormenta 20 - assemble stats, skills, and inventory, then export to PDF.",
-    image: "/projects/t20-sheet.png",
   },
 ];
 

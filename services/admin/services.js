@@ -4,12 +4,14 @@ let services = [
     title: "Web Development",
     description:
       "Responsive, accessible interfaces built with React.js and Next.js, styled with TailwindCSS and backed by well-structured, reusable components.",
+    tags: ["React.js", "Next.js", "TailwindCSS", "TypeScript"],
   },
   {
     id: "2",
     title: "Mobile Development",
     description:
       "Cross-platform mobile apps using React Native and Expo, delivering smooth, native-feeling experiences from a single codebase.",
+    tags: ["React Native", "Expo", "JavaScript", "TypeScript"],
   },
 ];
 

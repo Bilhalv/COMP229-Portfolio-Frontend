@@ -46,8 +46,19 @@ export default function AdminUserFormView() {
             {errors.email && <p className="text-xs text-error">{errors.email.message}</p>}
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="password" className={labelClasses}>Password <span className="text-error">*</span></label>
-            <input id="password" type="password" className={inputClasses} {...register("password", { required: "Password is required." })} />
+            <label htmlFor="password" className={labelClasses}>
+              Password {!isEdit && <span className="text-error">*</span>}
+            </label>
+            <input
+              id="password"
+              type="password"
+              className={inputClasses}
+              placeholder={isEdit ? "Leave blank to keep current password" : ""}
+              {...register("password", {
+                required: isEdit ? false : "Password is required.",
+              })}
+            />
+            {isEdit && <p className="text-xs text-text-muted">Leave blank to keep the current password.</p>}
             {errors.password && <p className="text-xs text-error">{errors.password.message}</p>}
           </div>
           <div className="flex gap-3 pt-2">

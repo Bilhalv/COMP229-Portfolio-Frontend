@@ -22,6 +22,12 @@ export default function AdminServiceFormView() {
             {errors.title && <p className="text-xs text-error">{errors.title.message}</p>}
           </div>
           <div className="flex flex-col gap-1">
+            <label htmlFor="tags" className={labelClasses}>Tags <span className="text-error">*</span></label>
+            <input id="tags" className={inputClasses} placeholder="React, Node.js, REST API" {...register("tags", { required: "At least one tag is required." })} />
+            <p className="text-xs text-text-muted">Comma-separated values.</p>
+            {errors.tags && <p className="text-xs text-error">{errors.tags.message}</p>}
+          </div>
+          <div className="flex flex-col gap-1">
             <label htmlFor="description" className={labelClasses}>Description <span className="text-error">*</span></label>
             <textarea id="description" rows={4} className={inputClasses} {...register("description", { required: "Description is required." })} />
             {errors.description && <p className="text-xs text-error">{errors.description.message}</p>}

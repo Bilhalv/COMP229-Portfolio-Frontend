@@ -16,7 +16,19 @@ export default function AdminServicesListView() {
       onDelete={handleDelete}
       columns={[
         { key: "title", label: "Title" },
-        { key: "description", label: "Description", render: (row) => row.description?.length > 100 ? `${row.description.slice(0, 100)}...` : row.description },
+        {
+          key: "tags",
+          label: "Tags",
+          render: (row) => (Array.isArray(row.tags) ? row.tags.join(", ") : "-"),
+        },
+        {
+          key: "description",
+          label: "Description",
+          render: (row) =>
+            row.description?.length > 80
+              ? `${row.description.slice(0, 80)}...`
+              : row.description,
+        },
       ]}
     />
   );

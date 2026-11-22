@@ -16,15 +16,17 @@ export default function AdminProjectsListView() {
       getEditTo={(row) => `/admin/projects/${row.id}/edit`}
       onDelete={handleDelete}
       columns={[
-        { key: "title", label: "Title" },
-        { key: "completion", label: "Completion" },
+        { key: "name", label: "Name" },
+        { key: "role", label: "Role" },
         {
-          key: "description",
-          label: "Description",
-          render: (row) =>
-            row.description?.length > 80
-              ? `${row.description.slice(0, 80)}...`
-              : row.description,
+          key: "completionDate",
+          label: "Completion",
+          render: (row) => (row.completionDate ? String(row.completionDate).slice(0, 10) : "-"),
+        },
+        {
+          key: "stack",
+          label: "Stack",
+          render: (row) => (Array.isArray(row.stack) ? row.stack.join(", ") : "-"),
         },
       ]}
     />

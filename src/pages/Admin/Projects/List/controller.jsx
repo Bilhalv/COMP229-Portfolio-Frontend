@@ -21,7 +21,7 @@ export default function useAdminProjectsController() {
   }, [loadProjects]);
 
   async function handleDelete(project) {
-    const confirmed = window.confirm(`Delete project ${project.title}?`);
+    const confirmed = window.confirm(`Delete project ${project.name}?`);
     if (!confirmed) return;
     try {
       unwrapResponse(

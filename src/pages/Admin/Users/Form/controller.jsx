@@ -44,7 +44,7 @@ export default function useAdminUserFormController() {
           firstname: user.firstname || "",
           lastname: user.lastname || "",
           email: user.email || "",
-          password: user.password || "",
+          password: "",
         });
       })
       .catch(setError)
@@ -54,10 +54,15 @@ export default function useAdminUserFormController() {
   async function onSubmit(data) {
     setError(null);
     try {
+      const payload = { ...data };
+      if (isEdit && !payload.password) {
+        delete payload.password;
+      }
+
       if (isEdit) {
-        unwrapResponse(await updateAdminUser(id, data), "Could not update the user.");
+        unwrapResponse(await updateAdminUser(id, payload), "Could not update the user.");
       } else {
-        unwrapResponse(await createAdminUser(data), "Could not create the user.");
+        unwrapResponse(await createAdminUser(payload), "Could not create the user.");
       }
       navigate("/admin/users");
     } catch (err) {
