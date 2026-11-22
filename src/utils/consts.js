@@ -5,4 +5,5 @@ export const NavBarItems = [
   { label: "Services", path: "/services" },
   { label: "Contact", path: "/contact" },
   { label: "References", path: "/references" },
+  { label: "Admin", path: "/admin" },
 ];

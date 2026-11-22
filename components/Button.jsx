@@ -13,7 +13,7 @@ const sizes = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex hover:cursor-pointer items-center justify-center gap-2 rounded-md font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60";
 
 // Renders as a router Link (to), a plain anchor (href), or a <button>, sharing
 // one set of CTA styles across the app.

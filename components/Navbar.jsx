@@ -4,6 +4,7 @@ import {
   FileUser,
   HardHat,
   Home as HomeIcon,
+  LayoutDashboard,
   MessageSquareQuote,
   SquareKanban,
 } from "lucide-react";
@@ -16,6 +17,7 @@ const NAV_ICONS = {
   Services: HardHat,
   Contact: ContactRound,
   References: MessageSquareQuote,
+  Admin: LayoutDashboard,
 };
 
 export default function Navbar() {
